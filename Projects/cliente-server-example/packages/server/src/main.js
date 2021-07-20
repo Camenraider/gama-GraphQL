@@ -1,60 +1,16 @@
-import { createServer } from 'http';
-import { parse } from 'querystring';
+import express, { response } from 'express';
 
-const server = createServer((request, response) => {
+const server = express();
+// recebe midors que é um pattern
+server.get('/status', ( __, response)=>{
+    response.send({
+        status:'Okay',
+    })
+});
 
-    switch (request.url) {
-
-        case '/status': {
-
-            response.writeHead(200, {
-                'Content-Type' : 'application/json',
-            });
-            response.write(
-                JSON.stringify({
-                    'status': 'Okay',
-                })
-            );
-            response.end();
-            break;
-        }
-
-        case '/authenticate': {
-            let data = '';
-
-            request.on('data',(chunk) => {
-                data += chunk;
-            });
-
-            request.on('end', () => {
-                const params = parse(data);
-
-
-                response.write(file);
-                response.end();
-            })
-            break;
-        }
-
-        case '/home': {
-            const path = resolve(__dirname, './pages/home.html');
-            readFile(path, (error, file) => {
-                if (error){
-                    response.writeHead(500, 'Can\'t process HTML file.');
-                    response.end();
-                return;
-            }
-            response.writeHead(200);
-            response.write(file);
-            response.end();
-            });
-            break;
-        }
-        default: {
-            response.writeHead(404,'Service not found.');
-            response.end();
-        }
-    }
+server.post('/authenticate', express.json(), (request, response) => {
+    console.log('E-Mail', resquest.body.email,'Senha', request.body.password);
+    response.send();
 });
 
 const PORT = process.env.PORT ? parseInt(process.env.PORT) : 8000;

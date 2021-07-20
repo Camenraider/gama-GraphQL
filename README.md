@@ -6,3 +6,4 @@
 # instalar npm i -g pnpm gerenciador de pacotes monorepo
 # instalar o pnpm i para atualizar e instalar o filter pnpm i --filter @dev-demands/server
 # inicializar com pnpm run start --filter @dev-demands/web
+# instalando express pnpm i express --filter @dev-demands/server
