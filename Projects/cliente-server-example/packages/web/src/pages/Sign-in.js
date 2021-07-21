@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 export default function SignIn() {
     // criando estados 
     const [email, setEmail] = useState('');
@@ -18,12 +19,12 @@ export default function SignIn() {
             }),
         })
         .then((Response) => Response.json())
-        .then(() => {
-            console.log('Sucess!');
-        });
+        .then((data) => {console.log('Sucess!', data); });
     }
+    
     // atribuindo valor ao estado
     const handleEmailChange = (event) => setEmail(event.target.value);
+
     const handlePasswordChange = (event) => setPassword(event.target.value);
     
     return (
@@ -35,8 +36,8 @@ export default function SignIn() {
                     type="email" 
                     value={email} 
                     onChange={handleEmailChange}
-                    inputmode="email" 
-                    autocomplete="username"
+                    inputMode="email" 
+                    autoComplete="username"
                 />
             </fieldset>
             <fieldset>
@@ -45,7 +46,7 @@ export default function SignIn() {
                     id="password" 
                     type="password" 
                     value={password}
-                    autocomplete="current-password"
+                    autoComplete="current-password"
                     onChange={handlePasswordChange} 
                 />
             </fieldset>
